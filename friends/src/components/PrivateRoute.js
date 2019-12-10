@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {Route, Redirect} from "react-router-dom";
 
 // requirements for this component:
@@ -8,5 +8,21 @@ import {Route, Redirect} from "react-router-dom";
 //    to login. if is authed, render the component prop
 
 const PrivateRoute =({ component: Component, ...theRest }) => {
-  return
-}
+  return (
+    <Route 
+      {...theRest}
+      render={() => {
+        if (localStorage.getItem("token")) {
+          return <Component />;
+        } else {
+          console.log(
+            "cd: Privateroute.js: Privateroute: Route.render: redirecting!"
+          );
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
+  );
+};
+
+export default PrivateRoute;
