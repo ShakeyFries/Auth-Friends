@@ -8,11 +8,10 @@ class Login extends React.Component {
       username: "",
       password: "",
     }
-  }
-};
+  };
 
 handleChange = e => {
-  this.ListeningStateChangedEvent({
+  this.setState({
     credentials: {
       ...this.state.credentials,
       [e.target.name]: e.target.value
@@ -23,7 +22,7 @@ handleChange = e => {
 login = e => {
   e.preventDefault();
   axios
-    .post("http://localhost:5000/", this.state.credentials)
+    .post("http://localhost:5000/api/login", this.state.credentials)
     .then(res => {
       console.log("cd: Login.js: Login: login then: res: ", res);
       localStorage.setItem("token", res.data.payload);
@@ -37,26 +36,27 @@ login = e => {
     );
 ;}
 
-render() {
+render(){
   return (
     <div>
       <form onSubmit={this.login}>
-        <input 
+        <input
           type="text"
           name="username"
           value={this.state.credentials.username}
           onChange={this.handleChange}
         />
-        <input 
+        <input
           type="password"
           name="password"
           value={this.state.credentials.password}
           onChange={this.handleChange}
         />
-        <button>Log In</button>
+        <button>Log in</button>
       </form>
     </div>
-  )
+  );
+  }
 }
 
 export default Login;
