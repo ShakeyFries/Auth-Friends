@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import  React, { useState } from "react";
 import { axiosWithAuth } from "../axiosWithAuth";
 
 function FriendsForm ({ getData }) {
@@ -12,7 +12,7 @@ function FriendsForm ({ getData }) {
     name: name,
     age: age,
     email: email
-  };
+  }
 
   return (
     <>
